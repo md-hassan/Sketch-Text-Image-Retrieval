@@ -1,0 +1,13 @@
+
+.vscode/
+__pycache__/
+*.pyc
+
+embedding*
+
+*.ipynb
+test.py
+
+checkpoints/
+wandb/
+dataset/
