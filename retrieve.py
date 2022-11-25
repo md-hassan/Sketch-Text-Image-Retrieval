@@ -58,11 +58,11 @@ checkpoint = torch.load(args.resume_path,map_location="cuda:"+str(args.cuda_id))
 start_epoch = checkpoint['epoch']
 taskformer.load_state_dict(checkpoint['model'])
 
-image_embeddings = np.load('/home/shape3d/code/Sketch-Text-Image-Retrieval/embedding_VAL_5K_49.npy')
+image_embeddings = np.load('/home/shape3d/code/Sketch-Text-Image-Retrieval/embedding_CLIP_VAL_5K.npy')
 image_embeddings = image_embeddings.squeeze()
 image_embeddings = torch.tensor(image_embeddings).to("cuda:1")
 
-with open('/home/shape3d/code/Sketch-Text-Image-Retrieval/embedding_VAL_5K_49.json') as json_file:
+with open('/home/shape3d/code/Sketch-Text-Image-Retrieval/embedding_CLIP_VAL_5K.json') as json_file:
     file_names = json.load(json_file).keys()
 
 file_names = np.array(list(file_names))
@@ -255,13 +255,16 @@ for file in tq.tqdm(cap_annos['images']):
     # caps = [x['caption'] for x in cap_annos['annotations'] if x['image_id'] == id]
     # random.shuffle(caps)
     # text = caps[0]
+    
     try:
-        text = "Image of a "+ file_catnames[id][0]
+        cats = file_catnames[id]
+        random.shuffle(cats)
+        text = "Image of a "+ cats[0]
     except:
         num_non+=1
         continue
 
-    file_comb, file_sketch, file_text = retrieve(sketch_path, text)
+    file_comb, file_sketch, file_text = retrieve_CLIP(sketch_path, text)
 
     cls_true = get_classes([name])
     if(cls_true == {}):

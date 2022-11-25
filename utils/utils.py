@@ -11,7 +11,7 @@ import pycocotools.coco as coco
 from torch.utils.data import Dataset
 from transformers import CLIPProcessor, CLIPTokenizer
 
-sys.path.append('/home/shape3d/code/sketch_text_2d')
+sys.path.append('/home/shape3d/code/Sketch-Text-Image-Retrieval')
 
 class build_dataset(Dataset):
     def __init__(self, split, args):

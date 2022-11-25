@@ -40,7 +40,7 @@ parser.add_argument("--warmup", type=int, default=10000, help="Number of steps t
 # classfication MLP, (RANDOM VALUES IN DEFAULT TO GET MODEL RUNNING FOR NOW)
 parser.add_argument('--hidden_size', default=256, type=int)
 parser.add_argument('--no_classes', default=80, type=int)
-parser.add_argument('--cls_weights_path', default='/home/shape3d/code/sketch_text_2d/checkpoints/classifiers/_checkpoint_epoch49.pth', type=str)
+parser.add_argument('--cls_weights_path', default='/home/shape3d/code/Sketch-Text-Image-Retrieval/checkpoints/classifiers/_checkpoint_epoch49.pth', type=str)
 
 # GPU
 parser.add_argument('--cuda_id', default=0, type=int)
