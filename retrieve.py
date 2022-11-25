@@ -244,17 +244,22 @@ match_text = {1: 0, 5: 0, 10: 0}
 num_non = 0
 num_imgs = len(cap_annos['images'])
 print(len(cap_annos['images']))
-shutil.rmtree('results/')
-os.mkdir('results/')
+# shutil.rmtree('results/')
+# os.mkdir('results/')
 for file in tq.tqdm(cap_annos['images']):
     name = file['file_name']
     id = file['id']
 
     sketch_path = sketch_base + name[:-4] + '.png'
     img_path = '/home/shape3d/code/Sketch-Text-Image-Retrieval/dataset/val2017/images/' + name
-    caps = [x['caption'] for x in cap_annos['annotations'] if x['image_id'] == id]
-    random.shuffle(caps)
-    text = caps[0]
+    # caps = [x['caption'] for x in cap_annos['annotations'] if x['image_id'] == id]
+    # random.shuffle(caps)
+    # text = caps[0]
+    try:
+        text = "Image of a "+ file_catnames[id][0]
+    except:
+        num_non+=1
+        continue
 
     file_comb, file_sketch, file_text = retrieve(sketch_path, text)
 
